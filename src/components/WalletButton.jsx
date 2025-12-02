@@ -5,9 +5,9 @@ const WalletButton = () => {
   const { isConnected, connect, disconnect, isExtensionRequired, extensionReady } =
     useWallet(HashpackConnector);
 
-  if (isExtensionRequired && !extensionReady) {
-    return <span className="text-red-500">Extension not found. Install Hashpack!</span>;
-  }
+  // if (isExtensionRequired && !extensionReady) {
+  //   return <span className="text-red-500">Extension not found. Install Hashpack!</span>;
+  // }
 
   return isConnected ? (
     <button
