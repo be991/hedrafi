@@ -8,9 +8,12 @@ const App = () => {
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       {/* Header */}
       <header className="flex justify-between items-center p-6 border-b border-gray-800">
-        <h1 className="text-2xl font-bold text-indigo-400"><img src={logo} width={60}/> <span class="inline-block bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+        <div class="flex items-center gap-3">
+          <img src={logo} width={60}/> 
+          <span class="inline-block bg-red-500 text-white text-xs font-semibold px-3 py-1">
             TestNet
-          </span> </h1>
+          </span> 
+        </div>
         <WalletButton />
       </header>
 
