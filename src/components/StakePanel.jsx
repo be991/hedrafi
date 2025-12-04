@@ -6,6 +6,7 @@ import { useWallet, useWriteContract, useReadContract, useAccountId, useBalance,
 import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 import CONTRACT_ABI from '../ABIs/stakingABI.json';
 import { ContractId } from '@hashgraph/sdk';
+import { checkTokenAssociation } from '../helpers';
 
 const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
 const REWARD_TOKEN_ID = process.env.REACT_APP_HTS_REWARD_TOKEN;
@@ -30,8 +31,9 @@ const StakePanel = () => {
     if (!isConnected || !evmAddress) return;
     try {
       await fetchHbarBalance();
-      await checkAssociation();
-
+      await getUserClaimed();
+      const associated = await checkTokenAssociation(accountId, REWARD_TOKEN_ID);
+      setIsAssociated(associated);
       // Pending reward
       const reward = await readContract({
         address: `0x${ContractId.fromString(CONTRACT_ADDRESS).toEvmAddress()}`,
@@ -54,6 +56,7 @@ const StakePanel = () => {
       console.error(e);
       setPendingReward(0);
       setUserStake(0);
+      setIsAssociated(false);
     }
   };
 
@@ -67,7 +70,7 @@ const StakePanel = () => {
     return () => clearInterval(interval);
   }, [accountId, isConnected, evmAddress]);
 
-  const checkAssociation = async () => {
+  const getUserClaimed = async () => {
     if (!evmAddress) return;
     try {
       const userDebt = await readContract({
@@ -77,15 +80,8 @@ const StakePanel = () => {
         args: [evmAddress],
       });
       const claimed = Number(userDebt) / 1e8;
-      if(claimed > 0){
-        setIsAssociated(true);
-      }else{
-        setIsAssociated(false);
-      }
       setClaimedReward(claimed);
-    } catch (e) {
-      setIsAssociated(false);
-    }
+    } catch (e) {}
   };
 
   const handleStake = async () => {
