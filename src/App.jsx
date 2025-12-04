@@ -22,6 +22,9 @@ const App = () => {
         {/* Staking Panel in center */}
         <div className="md:col-span-3">
           <div className="bg-gray-800 rounded-2xl p-6 shadow-xl">
+          <span class="inline-block bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+            TestNet
+          </span>
             <StakingStats />
             <StakePanel />
           </div>
