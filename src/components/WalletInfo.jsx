@@ -1,5 +1,5 @@
 import { useWallet, useBalance, useAccountId, useEvmAddress, useTokensBalance } from '@buidlerlabs/hashgraph-react-wallets';
-import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
+import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors'; 
 import { truncateAddress } from "../helpers";
 
 const HRT_TOKEN_ID = process.env.REACT_APP_HTS_REWARD_TOKEN;
