@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   @apply bg-gradient-to-r from-purple-900 via-indigo-900 to-black text-white;
   font-family: 'Inter', sans-serif;

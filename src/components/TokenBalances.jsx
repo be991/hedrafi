@@ -1,10 +1,10 @@
 // src/components/TokenBalances.tsx
 import { useWallet, useTokensBalance } from '@buidlerlabs/hashgraph-react-wallets';
-import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
+import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 
 const TokenBalances = () => {
-  const { isConnected } = useWallet(HashpackConnector);
-  const { data: tokensBalance } = useTokensBalance({ autoFetch: isConnected, connector: HashpackConnector });
+  const { isConnected } = useWallet(HWCConnector);
+  const { data: tokensBalance } = useTokensBalance({ autoFetch: isConnected, connector: HWCConnector });
 
   if (!isConnected) return <p className="text-gray-400">Connect your wallet to view tokens</p>;
   if (!tokensBalance || tokensBalance.length === 0) return <p>No tokens associated</p>;

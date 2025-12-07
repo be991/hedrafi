@@ -1,4 +1,3 @@
-import React from 'react';
 import { HWBridgeProvider } from '@buidlerlabs/hashgraph-react-wallets';
 import { HashpackConnector, KabilaConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 import { HederaTestnet } from '@buidlerlabs/hashgraph-react-wallets/chains';

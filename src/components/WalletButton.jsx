@@ -1,8 +1,8 @@
 import { useWallet } from '@buidlerlabs/hashgraph-react-wallets';
-import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
+import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 
 const WalletButton = () => {
-  const { isConnected, connect, disconnect } = useWallet(HashpackConnector);
+  const { isConnected, connect, disconnect } = useWallet(HWCConnector);
 
   return isConnected ? (
     <button

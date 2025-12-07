@@ -1,8 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
+import { useEffect } from "react";
 
 const App = () => {
+
+useEffect(() => {
+  const loader = document.getElementById("startup-loader");
+  if (loader) loader.style.display = "none";
+}, []);
+
   return (
     <BrowserRouter>
       <Routes>
