@@ -43,7 +43,7 @@ const StudioStorefront = () => {
       </div>
 
       {/* Header */}
-      <header className="relative backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
+      <header className="backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} width={60} alt="HedraFi Logo"/> 

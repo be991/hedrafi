@@ -32,7 +32,7 @@ const MarketplaceHome = () => {
       </div>
 
       {/* Header */}
-      <header className="relative backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
+      <header className="backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} width={60} alt="HedraFi Logo"/> 
@@ -100,7 +100,7 @@ const MarketplaceHome = () => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-3xl font-bold">Trending Collections</h2>
             <Link to="/marketplace" className="text-purple-400 hover:text-purple-300 font-semibold">
-              View All →
+              View All
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -124,7 +124,7 @@ const MarketplaceHome = () => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-3xl font-bold">Latest NFTs</h2>
             <Link to="/marketplace" className="text-purple-400 hover:text-purple-300 font-semibold">
-              View All →
+              View All 
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -169,9 +169,9 @@ const MarketplaceHome = () => {
               </div>
             </div>
             <div className="flex gap-6 text-gray-400">
-              <a href="#" className="hover:text-purple-400 transition-colors">Twitter</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Discord</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Docs</a>
+              <a href="https://twitter.com" className="hover:text-purple-400 transition-colors">Twitter</a>
+              <a href="https://discord.com" className="hover:text-purple-400 transition-colors">Discord</a>
+              <a href="https://docs.hedera.com" className="hover:text-purple-400 transition-colors">Docs</a>
             </div>
           </div>
           <div className="text-center mt-6 text-gray-500 text-sm">

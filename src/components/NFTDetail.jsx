@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png";
 
 // Mock NFT data
@@ -36,7 +36,7 @@ const mockNFT = {
 };
 
 const NFTDetail = () => {
-  const { id } = useParams();
+  /* const { id } = useParams(); */
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950/20 text-white font-sans">
@@ -47,7 +47,7 @@ const NFTDetail = () => {
       </div>
 
       {/* Header */}
-      <header className="relative backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
+      <header className="backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} width={60} alt="HedraFi Logo"/> 

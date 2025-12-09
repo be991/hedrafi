@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png";
 import NFTCard from './NFTCard';
 
@@ -30,7 +30,7 @@ const mockCollection = {
 };
 
 const CollectionDetail = () => {
-  const { id } = useParams();
+  /* const { id } = useParams(); */
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950/20 text-white font-sans">
@@ -41,7 +41,7 @@ const CollectionDetail = () => {
       </div>
 
       {/* Header */}
-      <header className="relative backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
+      <header className="backdrop-blur-xl bg-gray-900/50 border-b border-purple-500/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} width={60} alt="HedraFi Logo"/> 
@@ -172,9 +172,9 @@ const CollectionDetail = () => {
               </div>
             </div>
             <div className="flex gap-6 text-gray-400">
-              <a href="#" className="hover:text-purple-400 transition-colors">Twitter</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Discord</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Docs</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">Twitter</a>
+              <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">Discord</a>
+              <a href="https://docs.example.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">Docs</a>
             </div>
           </div>
           <div className="text-center mt-6 text-gray-500 text-sm">
