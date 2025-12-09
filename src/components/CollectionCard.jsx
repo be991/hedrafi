@@ -52,4 +52,4 @@ const CollectionCard = ({ collection }) => {
   );
 };
 
-export default CollectionCard;  // ← Make sure this line exists
+export default CollectionCard;

@@ -3,10 +3,10 @@ import logo from "../assets/logo.png";
 
 const StudioHome = () => {
   const stats = [
-    { label: 'NFTs Created', value: '0', icon: '🎨' },
-    { label: 'Collections', value: '0', icon: '📦' },
-    { label: 'Total Sales', value: '0 ℏ', icon: '💰' },
-    { label: 'Followers', value: '0', icon: '👥' }
+    { label: 'NFTs Created', value: '0', icon: '' },
+    { label: 'Collections', value: '0', icon: '' },
+    { label: 'Total Sales', value: '0 ℏ', icon: '' },
+    { label: 'Followers', value: '0', icon: '' }
   ];
 
   const quickActions = [
@@ -101,23 +101,26 @@ const StudioHome = () => {
 
         {/* Recent Activity / Empty State */}
         <div>
-          <h2 className="text-2xl font-bold mb-6">Recent Activity</h2>
-          <div className="backdrop-blur-xl bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl p-12 border border-purple-500/20 shadow-xl text-center">
-            <div className="text-6xl mb-4">🎯</div>
-            <h3 className="text-2xl font-bold mb-2 text-gray-300">Get Started</h3>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Recent Activity</h2>
+          <div
+            className="backdrop-blur-xl bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl p-6 sm:p-12 border border-purple-500/20 shadow-xl text-center">
+            <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🎯</div>
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-300">Get Started</h3>
+            <p className="text-sm sm:text-base text-gray-400 mb-6 max-w-md mx-auto px-2">
               Begin your creator journey by minting your first NFT or setting up your storefront
             </p>
-            <div className="flex gap-4 justify-center">
-              <Link to="/studio/mint">
-                <button className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/30 hover:scale-105">
-                  Mint Your First NFT
-                </button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Link to="/studio/mint" className="w-full sm:w-auto">
+              <button
+                className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/30 active:scale-95 sm:hover:scale-105">
+                Mint Your First NFT
+              </button>
               </Link>
-              <Link to="/studio/storefront">
-                <button className="bg-gray-700/50 hover:bg-gray-700 border border-gray-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
-                  Setup Storefront
-                </button>
+              <Link to="/studio/storefront" className="w-full sm:w-auto">
+              <button
+                className="w-full sm:w-auto bg-gray-700/50 hover:bg-gray-700 border border-gray-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 active:scale-95 sm:hover:scale-105">
+                Setup Storefront
+              </button>
               </Link>
             </div>
           </div>
