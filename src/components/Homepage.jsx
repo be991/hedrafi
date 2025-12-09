@@ -50,12 +50,12 @@ const Homepage = () => {
             <div className="backdrop-blur-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl p-8 border border-blue-500/30 shadow-xl hover:scale-105 transition-transform">
               <div className="text-4xl mb-4">🔒</div>
               <div className="text-sm text-gray-300 mb-2">Total HBAR Staked</div>
-              <div className="text-4xl font-bold">158+</div>
+              <div className="text-4xl font-bold">168+</div>
             </div>
             <div className="backdrop-blur-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl p-8 border border-purple-500/30 shadow-xl hover:scale-105 transition-transform">
               <div className="text-4xl mb-4">💎</div>
               <div className="text-sm text-gray-300 mb-2">Total HRT Distributed</div>
-              <div className="text-4xl font-bold">4,000+</div>
+              <div className="text-4xl font-bold">9,000+</div>
             </div>
             <div className="backdrop-blur-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl p-8 border border-green-500/30 shadow-xl hover:scale-105 transition-transform">
               <div className="text-4xl mb-4">💰</div>
