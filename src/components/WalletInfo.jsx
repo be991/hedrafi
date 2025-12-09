@@ -1,11 +1,11 @@
 import { useWallet, useBalance, useAccountId, useEvmAddress, useTokensBalance } from '@buidlerlabs/hashgraph-react-wallets';
-import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
+import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors'; 
 import { truncateAddress } from "../helpers";
 
 const HRT_TOKEN_ID = process.env.REACT_APP_HTS_REWARD_TOKEN;
 
 const WalletInfo = () => {
-  const { isConnected } = useWallet(HashpackConnector);
+  const { isConnected } = useWallet(HWCConnector);
   const { data: balance } = useBalance({ autoFetch: isConnected });
   const { data: accountId } = useAccountId({ autoFetch: isConnected });
   const { data: evmAddress } = useEvmAddress({ autoFetch: isConnected });

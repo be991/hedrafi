@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
+import { useEffect } from "react";
 
 // Studio Pages
 import StudioHome from './components/StudioHome';
@@ -14,6 +15,12 @@ import NFTDetail from './components/NFTDetail';
 import CollectionDetail from './components/CollectionDetail';
 
 const App = () => {
+
+useEffect(() => {
+  const loader = document.getElementById("startup-loader");
+  if (loader) loader.style.display = "none";
+}, []);
+
   return (
     <BrowserRouter>
       <Routes>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useReadContract } from '@buidlerlabs/hashgraph-react-wallets';
-import { HashpackConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
+import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 import CONTRACT_ABI from '../ABIs/stakingABI.json';
 import { ContractId } from '@hashgraph/sdk';
 
@@ -8,7 +8,7 @@ const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
 const REWARD_TOKEN_ID = process.env.REACT_APP_HTS_REWARD_TOKEN;
 
 const StakingStats = () => {
-  const { readContract } = useReadContract({ connector: HashpackConnector });
+  const { readContract } = useReadContract({ connector: HWCConnector });
   const [stats, setStats] = useState({
     totalStakedHBAR: 0,
     totalHRTLocked: 0,
@@ -72,7 +72,7 @@ const StakingStats = () => {
   const statsData = [
     { 
       label: 'Total HBAR Locked', 
-      value: stats.totalStakedHBAR.toLocaleString(), 
+      value: stats.totalStakedHBAR.toLocaleString() + ' ℏ', 
       icon: '🔒', 
       color: 'from-blue-500/20 to-cyan-500/20', 
       border: 'border-blue-500/30',
@@ -84,15 +84,17 @@ const StakingStats = () => {
       icon: '💎', 
       color: 'from-purple-500/20 to-pink-500/20', 
       border: 'border-purple-500/30',
-      glow: 'shadow-purple-500/20'
+      glow: 'shadow-purple-500/20',
+      suffix: 'HRT',
     },
     { 
       label: 'Total Reward Paid', 
       value: stats.totalRewardPaid.toLocaleString(), 
-      icon: '💰', 
+      icon: '💎', 
       color: 'from-green-500/20 to-emerald-500/20', 
       border: 'border-green-500/30',
-      glow: 'shadow-green-500/20'
+      glow: 'shadow-green-500/20', 
+      suffix: 'HRT',
     },
     { 
       label: 'Total Users', 
@@ -109,13 +111,15 @@ const StakingStats = () => {
       {statsData.map((stat, i) => (
         <div 
           key={i} 
-          className={`backdrop-blur-xl bg-gradient-to-br ${stat.color} rounded-2xl p-5 border ${stat.border} hover:scale-105 transition-all duration-300 shadow-xl ${stat.glow} group cursor-pointer`}
+          className={`backdrop-blur-xl bg-gradient-to-br ${stat.color} rounded-2xl p-4 border ${stat.border} hover:scale-105 transition-all duration-300  ${stat.glow} group cursor-pointer`}
         >
           <div className="flex items-center justify-between mb-2">
             <div className="text-xs text-gray-300 font-medium">{stat.label}</div>
             <div className="text-2xl group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
           </div>
-          <div className="text-2xl font-bold font-mono">{stat.value}</div>
+          <div className="text-xl font-bold font-mono">{stat.value}{' '}
+           {stat.suffix && <sub className="text-lg font-normal text-sm">{stat.suffix}</sub>}
+          </div>
         </div>
       ))}
     </div>

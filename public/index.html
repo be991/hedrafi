@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Hedrafi | Staking & NFT platform on hedera"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -28,6 +28,43 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <div id="startup-loader" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  font-family: sans-serif;
+  z-index: 999999;
+">
+<img src="/logo.png" alt="" width="70">
+<br>
+  <div style="
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #00aef0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  "></div>
+  
+  <h2 style="margin-top: 20px;">Loading HedraFi…</h2>
+  <p>Initializing the HedraFi ecosystem…</p>
+</div>
+
+<div id="root"></div>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
     <div id="root"></div>
     <!--
       This HTML file is a template.

@@ -50,12 +50,12 @@ const Homepage = () => {
             <div className="backdrop-blur-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl p-8 border border-blue-500/30 shadow-xl hover:scale-105 transition-transform">
               <div className="text-4xl mb-4">🔒</div>
               <div className="text-sm text-gray-300 mb-2">Total HBAR Staked</div>
-              <div className="text-4xl font-bold">15,000+</div>
+              <div className="text-4xl font-bold">158+</div>
             </div>
             <div className="backdrop-blur-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl p-8 border border-purple-500/30 shadow-xl hover:scale-105 transition-transform">
               <div className="text-4xl mb-4">💎</div>
               <div className="text-sm text-gray-300 mb-2">Total HRT Distributed</div>
-              <div className="text-4xl font-bold">50,000+</div>
+              <div className="text-4xl font-bold">4,000+</div>
             </div>
             <div className="backdrop-blur-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl p-8 border border-green-500/30 shadow-xl hover:scale-105 transition-transform">
               <div className="text-4xl mb-4">💰</div>
@@ -155,7 +155,7 @@ const Homepage = () => {
       </section>
 
       {/* Roadmap */}
-      <section className="relative py-20 px-6 bg-gray-900/30">
+      {/* <section className="relative py-20 px-6 bg-gray-900/30">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">Roadmap</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -197,7 +197,74 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+<section className="relative py-20 px-6 bg-gray-900/30">
+  <div className="max-w-7xl mx-auto">
+    <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+      Roadmap
+    </h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {/* Q4 2025 - Immediate Launch Phase */}
+      <div className="backdrop-blur-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-2xl p-6 border border-purple-500/30">
+        <div className="text-sm font-bold text-purple-300 mb-2">Q4 2025</div>
+        <h3 className="text-xl font-bold mb-4">Immediate Launch Phase</h3>
+        <ul className="text-sm text-gray-300 space-y-2">
+          <li>• New homepage & staking dashboard</li>
+          <li>• HRT token live on TestNet</li>
+          <li>• NFT Studio UI integrated (Coming Soon)</li>
+          <li>• MainNet staking launch</li>
+        </ul>
+      </div>
+
+      {/* Q1 2026 - Ecosystem Release */}
+      <div className="backdrop-blur-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl p-6 border border-indigo-500/30">
+        <div className="text-sm font-bold text-indigo-300 mb-2">Q1 2026</div>
+        <h3 className="text-xl font-bold mb-4">Full Ecosystem Release</h3>
+        <ul className="text-sm text-gray-300 space-y-2">
+          <li>• NFT Studio v1 (HTS minting)</li>
+          <li>• Creator storefronts</li>
+          <li>• Marketplace (TestNet)</li>
+          <li>• Staking campaigns & HRT rewards</li>
+        </ul>
+      </div>
+
+      {/* Q2 2026 - Growth */}
+      <div className="backdrop-blur-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl p-6 border border-green-500/30">
+        <div className="text-sm font-bold text-green-300 mb-2">Q2 2026</div>
+        <h3 className="text-xl font-bold mb-4">Growth & Adoption</h3>
+        <ul className="text-sm text-gray-300 space-y-2">
+          <li>• Weekly NFT minting challenges</li>
+          <li>• Premium creator features</li>
+          <li>• 15K HBAR TVL milestone</li>
+          <li>• 10K+ NFTs minted</li>
+        </ul>
+      </div>
+
+      {/* Q3 2026 - zkVerify Phase */}
+      <div className="backdrop-blur-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl p-6 border border-pink-500/30">
+        <div className="text-sm font-bold text-pink-300 mb-2">Q3 2026</div>
+        <h3 className="text-xl font-bold mb-4">ZK Expansion</h3>
+        <ul className="text-sm text-gray-300 space-y-2">
+          <li>• zkVerify integration</li>
+          <li>• NFT authenticity proofs</li>
+          <li>• Cross-chain bridging prototype</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
 
       {/* Footer */}
       <footer className="relative backdrop-blur-xl bg-gray-900/50 border-t border-purple-500/20 py-12">
@@ -211,7 +278,7 @@ const Homepage = () => {
               </div>
             </div>
             <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Twitter/X</a>
+              <a href="#"  className="text-gray-400 hover:text-purple-400 transition-colors">Twitter/X</a>
               <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">LinkedIn</a>
               <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Discord</a>
             </div>
