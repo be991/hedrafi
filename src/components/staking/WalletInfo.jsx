@@ -1,5 +1,3 @@
-// src/components/WalletInfo.jsx
-
 import { useWallet, useBalance, useAccountId, useEvmAddress, useTokensBalance } from '@buidlerlabs/hashgraph-react-wallets';
 import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors'; 
 import { truncateAddress } from "../../helpers";

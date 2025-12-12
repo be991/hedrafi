@@ -1,5 +1,3 @@
-// src/components/WalletButton.jsx
-
 import { useWallet } from '@buidlerlabs/hashgraph-react-wallets';
 import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 

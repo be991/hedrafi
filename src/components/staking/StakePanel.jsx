@@ -1,5 +1,3 @@
-// src/components/StakePanel.jsx
-
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,10 +16,11 @@ const StakePanel = () => {
   const { readContract } = useReadContract({ connector: HWCConnector });
   const { data: accountId } = useAccountId({ autoFetch: isConnected });
   const { data: evmAddress } = useEvmAddress({ autoFetch: isConnected });
-  const { data: hbarBalance, refetch: fetchHbarBalance } = useBalance({ autoFetch: isConnected });
+  const { refetch: fetchHbarBalance } = useBalance({ autoFetch: isConnected });
   const { associateTokens } = useAssociateTokens({ connector: HWCConnector });
 
   const [stakeAmount, setStakeAmount] = useState('');
+  const [unstakeAmount, setUnstakeAmount] = useState('');
   const [pendingReward, setPendingReward] = useState(0);
   const [claimedReward, setClaimedReward] = useState(0);
   const [userStake, setUserStake] = useState(0);
@@ -70,6 +69,7 @@ const StakePanel = () => {
       interval = setInterval(() => fetchUserData(), 10000);
     }
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountId, isConnected, evmAddress]);
 
   const getUserClaimed = async () => {
@@ -104,6 +104,31 @@ const StakePanel = () => {
     } catch (e) {
       console.error(e);
       toast.error('Staking failed');
+    }
+  };
+
+  const handleUnstake = async () => {
+    if (!isConnected) return toast.error('Connect your wallet first');
+    if (!unstakeAmount || unstakeAmount <= 0) return toast.error('Enter a valid amount');
+    if (Number(unstakeAmount) > userStake) return toast.error('Amount exceeds your staked balance');
+
+    try {
+      // Convert to tinybar (multiply by 1e8)
+      const amountInTinybar = Math.floor(Number(unstakeAmount) * 1e8);
+      
+      await writeContract({
+        contractId: CONTRACT_ADDRESS,
+        abi: CONTRACT_ABI,
+        functionName: 'unstake',
+        args: [amountInTinybar],
+        metaArgs: { gas: 220_000 },
+      });
+      toast.success('Unstake successful!');
+      setUnstakeAmount('');
+      fetchUserData();
+    } catch (e) {
+      console.error(e);
+      toast.error('Unstaking failed');
     }
   };
 
@@ -189,6 +214,24 @@ const StakePanel = () => {
             className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 active:scale-95 sm:hover:scale-105"
           >
             Stake
+          </button>
+        </div>
+
+        {/* Unstake Input */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <input
+            type="number"
+            value={unstakeAmount}
+            onChange={(e) => setUnstakeAmount(e.target.value)}
+            placeholder="Amount to unstake"
+            max={userStake}
+            className="flex-1 bg-gray-900/50 border border-red-500/20 rounded-xl px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all placeholder-gray-500"
+          />
+          <button
+            onClick={handleUnstake}
+            className="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 shadow-lg shadow-red-500/30 hover:shadow-red-500/50 active:scale-95 sm:hover:scale-105"
+          >
+            Unstake
           </button>
         </div>
 

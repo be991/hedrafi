@@ -1,5 +1,3 @@
-// src/components/StakingStats.jsx
-
 import { useState, useEffect } from 'react';
 import { useReadContract } from '@buidlerlabs/hashgraph-react-wallets';
 import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';

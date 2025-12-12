@@ -1,5 +1,3 @@
-// src/components/Dashboard.jsx
-
 import WalletButton from './WalletButton';
 import WalletInfo from './WalletInfo';
 import StakePanel from './StakePanel';
