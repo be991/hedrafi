@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { stakingContract, rewardToken } from '../../lib/staking'
 import { Lock, Diamond, Banknote, Users } from 'lucide-react';
 
-const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
-
 const StakingStats = () => {
 
   const [stats, setStats] = useState({
@@ -86,11 +84,11 @@ const StakingStats = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 w-full">
       {statsData.map((stat, index) => (
         <div 
           key={index} 
-          className={`glass-card p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-white/[0.05] relative overflow-hidden group hover:bg-[#0E1529] transition-all duration-700 shadow-xl flex flex-col justify-between min-h-[160px] md:min-h-[200px]`}
+          className={`glass-card p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border-white/[0.05] relative overflow-hidden group hover:bg-[#0E1529] transition-all duration-700 shadow-xl flex flex-col justify-between min-h-[180px] md:min-h-[220px]`}
         >
           {/* Advanced Glow Layer */}
           <div className={`absolute -top-10 -right-10 w-40 h-40 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 ${stat.glow}`}></div>
