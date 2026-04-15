@@ -220,7 +220,9 @@ const Dashboard = () => {
           <section className="space-y-8">
             <div className="space-y-4">
               <div className="w-16 h-1 bg-cyber-blue rounded-full"></div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white">Staking Statistics</h2>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white">
+                Staking Statistics
+              </h2>
             </div>
             <StakingStats />
           </section>
