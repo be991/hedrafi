@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { convertIpfsToPinata } from "../../lib/marketplace"
 
 const NFTCard = ({ nft }) => {
-  return (
-    <Link to={`/marketplace/nft/${nft.id}`} className="group block">
+  return ( 
+    <Link to={`/marketplace/nft/${nft.token_id}/${nft.serial_number}`} className="group block">
       <div className="glass rounded-[2rem] border-white/5 overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:bg-white/[0.03] hover:border-blue-500/30 shadow-2xl relative">
         {/* Hover Glow Effect */}
         <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-        
+         
         <div className="relative aspect-square overflow-hidden">
           <img 
             src={convertIpfsToPinata(nft.image_url)} 
@@ -31,7 +31,7 @@ const NFTCard = ({ nft }) => {
             <div>
               <div className="text-[10px] text-gray-600 font-black uppercase tracking-widest mb-1">List Price</div>
               <div className="text-lg font-mono font-black text-cyber-blue">
-                 {Number(nft.price).toFixed(2)} <span className="text-[10px] text-gray-500 font-bold">HRT</span>
+                 {Number(nft.price).toFixed(2)} <span className="text-[10px] text-gray-500 font-bold">ℏ</span>
               </div>
             </div>
             <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all">

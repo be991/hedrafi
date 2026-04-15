@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useWallet, useWriteContract, useReadContract, useAccountId, useBalance, useAssociateTokens, useEvmAddress } from '@buidlerlabs/hashgraph-react-wallets';
+import { useWallet, useWriteContract, useAccountId, useBalance, useAssociateTokens, useEvmAddress } from '@buidlerlabs/hashgraph-react-wallets';
 import { HWCConnector } from '@buidlerlabs/hashgraph-react-wallets/connectors';
 import CONTRACT_ABI from '../../ABIs/stakingABI.json';
-import { ContractId } from '@hashgraph/sdk';
 import { checkTokenAssociation } from '../../helpers';
-import { Lock, Unlock, History, Sparkles, AlertCircle, Info, ChevronRight, Wallet } from 'lucide-react';
+import { Lock, Unlock, History, Sparkles, Info} from 'lucide-react';
 
-import { stakingContract, rewardToken } from '../../lib/staking'
+import { stakingContract } from '../../lib/staking'
 
-const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
-const REWARD_TOKEN_ID = process.env.REACT_APP_HTS_REWARD_TOKEN;
+const CONTRACT_ADDRESS = process.env.REACT_APP_STAKING_ADDRESS;
+const REWARD_TOKEN_ID = process.env.REACT_APP_REWARD_TOKEN;
 
 const StakePanel = () => {
   const { isConnected } = useWallet(HWCConnector);
   const { writeContract } = useWriteContract({ connector: HWCConnector });
-  // const { readContract } = useReadContract({ connector: HWCConnector });
   const { data: accountId } = useAccountId({ autoFetch: isConnected });
   const { data: evmAddress } = useEvmAddress({ autoFetch: isConnected });
   const { data: balance, refetch: fetchHbarBalance } = useBalance({ autoFetch: isConnected });
-  const hbarBalance = balance ? balance.hbars : 0;
+  const hbarBalance = balance?.formatted || 0;
   const { associateTokens } = useAssociateTokens({ connector: HWCConnector });
 
   const [activeTab, setActiveTab] = useState('stake');
@@ -47,8 +45,9 @@ const StakePanel = () => {
       const reward = await stakingContract.pendingReward(evmAddress)
       setPendingReward( Number(reward) / 1e8);
       // User stake
-      const stake = await stakingContract.userStake(evmAddress)
-      setUserStake( Number(stake) / 1e8 );
+      const stake = await stakingContract.users(evmAddress);
+      setUserStake( Number(stake[0]) / 1e8 );
+
 
     } catch (e) {
       console.error(e);
@@ -61,7 +60,7 @@ const StakePanel = () => {
   const getUserClaimed = async () => {
     if (!evmAddress) return;
     try {
-      const userDebt = await stakingContract.userRewardDebt(evmAddress)
+      const userDebt = await stakingContract.claimedReward(evmAddress)
       const claimed = Number(userDebt) / 1e8;
       setClaimedReward(claimed);
     } catch (e) {}
@@ -71,6 +70,8 @@ const StakePanel = () => {
     if (!isConnected) return toast.error('Connect your wallet first');
     if (!stakingContract) return toast.error('Contract not initialized');
     if (!stakeAmount || stakeAmount <= 0) return toast.error('Enter a valid amount');
+
+    if(stakeAmount > balance.value) return toast.error('Insufficient HBAR for staking');
 
     try {
       setStaking(true);
@@ -125,7 +126,7 @@ const StakePanel = () => {
     if (!isAssociated) {
       try {
         await associateTokens([REWARD_TOKEN_ID]);
-        toast.success('HTS token associated!');
+        toast.success('HRT token associated!');
         setIsAssociated(true);
         return;
       } catch (e) {
@@ -137,9 +138,9 @@ const StakePanel = () => {
       await writeContract({
         contractId: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
-        functionName: 'claimReward',
+        functionName: 'claim',
         args: [],
-        metaArgs: { gas: 120_000 },
+        metaArgs: { gas: 320_000 },
       });
       toast.success('Rewards claimed!');
       await fetchUserData();
@@ -192,7 +193,7 @@ const StakePanel = () => {
                  </div>
                  <div className="text-right">
                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-1">Available ℏ</div>
-                    <div className="text-lg font-mono font-black text-white">{Number(hbarBalance).toFixed(2)}</div>
+                    <div className="text-lg font-mono font-black text-white">{ hbarBalance }</div>
                  </div>
               </div>
 
@@ -205,7 +206,7 @@ const StakePanel = () => {
                    placeholder="0.00"
                  />
                  <button 
-                   onClick={() => setStakeAmount(hbarBalance)}
+                   onClick={() => setStakeAmount(balance.value) }
                    className="absolute right-4 top-1/2 -translate-y-1/2 px-4 py-2 bg-blue-500/10 text-cyber-blue rounded-xl text-[10px] font-black uppercase tracking-widest border border-blue-500/20 hover:bg-blue-600 hover:text-white transition-all shadow-lg"
                  >
                     MAX
@@ -214,13 +215,7 @@ const StakePanel = () => {
            </div>
 
            <div className="space-y-4 pt-4">
-              <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest bg-white/[0.02] p-4 rounded-2xl border border-white/5">
-                 <div className="flex items-center gap-2">
-                   <Sparkles size={14} className="text-cyber-blue" />
-                   <span className="text-slate-400">Yield APR</span>
-                 </div>
-                 <span className="text-white">24.5% Fixed</span>
-              </div>
+        
               
               <button 
                 onClick={handleStake}
@@ -262,6 +257,7 @@ const StakePanel = () => {
                    onChange={(e) => setUnstakeAmount(e.target.value)}
                    className="w-full bg-[#040A1A] border border-white/10 group-hover/input:border-red-500/40 focus:border-red-500 p-6 md:p-8 rounded-3xl text-3xl md:text-4xl font-mono font-black text-white outline-none transition-all placeholder:text-slate-800"
                    placeholder="0.00"
+                   
                  />
                  <button 
                    onClick={() => setUnstakeAmount(userStake)}
@@ -302,7 +298,7 @@ const StakePanel = () => {
                   <div className="px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-[8px] font-black uppercase tracking-[0.3em] border border-green-500/20">Accruing</div>
                </div>
                <div className="text-4xl md:text-5xl font-mono font-black text-white tracking-tighter">
-                  {pendingReward.toFixed(4)} <span className="text-xs text-slate-600 uppercase font-black">HRT</span>
+                  {pendingReward.toFixed(4)} <span className="text-xs text-slate-600 uppercase font-black">$HRT</span>
                </div>
                <button 
                  onClick={handleClaim}
@@ -324,7 +320,7 @@ const StakePanel = () => {
                   </div>
                </div>
                <div className="text-4xl md:text-5xl font-mono font-black text-white tracking-tighter">
-                  {claimedReward.toFixed(2)} <span className="text-xs text-slate-600 uppercase font-black">HRT</span>
+                  {claimedReward.toFixed(2)} <span className="text-xs text-slate-600 uppercase font-black">$HRT</span>
                </div>
                <div className="flex items-center gap-3 text-[10px] font-black text-slate-600 pt-2 uppercase tracking-widest">
                   <Info size={14} className="text-indigo-500" />

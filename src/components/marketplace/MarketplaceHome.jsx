@@ -8,23 +8,29 @@ import { Search, SlidersHorizontal, Rocket, Palette, ArrowRight, LayoutGrid, Spa
 const MarketplaceHome = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [nfts, setNfts] = useState([]); 
+  // const [nfts, setNfts] = useState([]); 
+  // const [loading, setLoading] = useState(true); 
   const API_URL = process.env.REACT_APP_API_URL;
 
   const categories = ['All', 'Art', 'Gaming', 'Music', 'Photography', 'Sports'];
 
-  useEffect(() => {
-    const loadNFTs = async () => {
-      try {
-        const res = await fetch(`${API_URL}/api/listings`);
-        const data = await res.json();
-        setNfts(data);
-      } catch (e) {
-        console.error("Error loading NFTs:", e);
-      }
-    };
-    loadNFTs();
-  }, [API_URL]);
+  // useEffect(() => {
+  //   const loadNFTs = async () => {
+  //     try {
+  //       const res = await fetch(`${API_URL}/api/listings`);
+  //       const data = await res.json();
+  //       setNfts(data);
+  //       setLoading(false); 
+  //     } catch (e) {
+  //       console.error("Error loading NFTs:", e);
+  //     }
+  //   };
+  //   loadNFTs();
+  // }, [API_URL]);
+
+
+
+  
 
   return (
     <div className="relative min-h-screen bg-[#040816] overflow-hidden text-slate-200">
@@ -112,26 +118,96 @@ const MarketplaceHome = () => {
                </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
               {nfts.length > 0 ? (
                 nfts.map((nft) => (
                   <NFTCard key={nft.id} nft={nft} />
                 ))
               ) : (
+                loading ? 
                 [...Array(8)].map((_, i) => (
                   <div key={i} className="glass-card aspect-[3/4] rounded-[3rem] animate-pulse border-white/[0.05] flex flex-col p-6 space-y-6">
                      <div className="flex-1 bg-white/5 rounded-3xl"></div>
                      <div className="h-6 bg-white/5 rounded-full w-2/3"></div>
                      <div className="h-4 bg-white/5 rounded-full w-1/3"></div>
                   </div>
-                ))
+                )) : <div></div>
               )}
-            </div>
+            </div> */}
+
+
+<div className="w-full flex flex-col items-center justify-center py-24 text-center space-y-10">
+  
+  <div className="w-24 h-24 rounded-[2rem] bg-blue-600/5 flex items-center justify-center border border-white/10">
+    <Sparkles size={40} className="text-cyber-blue" />
+  </div>
+
+  <div className="space-y-4 max-w-2xl">
+    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+      Marketplace <span className="text-gradient">Launching Soon</span>
+    </h3>
+    <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed">
+      The HedraFi NFT marketplace is in its final stage of deployment. 
+      Soon you’ll be able to discover, trade, and collect premium digital assets on Hedera.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl pt-6">
+
+    <div className="glass-card p-6 rounded-2xl border-white/5">
+      <h4 className="text-white font-bold mb-2">Curated Collections</h4>
+      <p className="text-slate-500 text-sm">Explore high-quality creator launches</p>
+    </div>
+
+    <div className="glass-card p-6 rounded-2xl border-white/5">
+      <h4 className="text-white font-bold mb-2">Seamless Trading</h4>
+      <p className="text-slate-500 text-sm">Fast, low-fee NFT transactions</p>
+    </div>
+
+    <div className="glass-card p-6 rounded-2xl border-white/5">
+      <h4 className="text-white font-bold mb-2">Creator Economy</h4>
+      <p className="text-slate-500 text-sm">Launch and monetize your collections</p>
+    </div>
+
+  </div>
+
+  <div className="pt-6">
+    <p className="text-cyber-blue text-sm font-bold tracking-wide">
+      🎉 Early staking participants will get priority access to NFT drops
+    </p>
+  </div>
+
+
+    <div className='text-center'>
+      <Link to="/staking" className="group">
+        <button className="btn-primary !px-16 !py-6 text-xl w-full sm:w-auto relative overflow-hidden">
+            <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Rocket size={24} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" /> Start earning HRT tokens
+            </span>
+        </button>
+      </Link>
+    </div>
+
+</div>
+
+
+
+          
+
+
+
+
+
+
           </div>
         </section>
 
+
+
+
         {/* Creator CTA */}
-        <section className="pb-40 px-4 sm:px-6 lg:px-8">
+        {/* <section className="pb-40 px-4 sm:px-6 lg:px-8">
           <div className="container-main">
              <div className="glass-card p-12 md:p-32 rounded-[4rem] border-white/[0.05] relative overflow-hidden group text-center space-y-12 shadow-2xl">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,102,255,0.05)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
@@ -160,7 +236,7 @@ const MarketplaceHome = () => {
                 </div>
              </div>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <Footer />

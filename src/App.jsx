@@ -11,6 +11,7 @@ import MarketplaceHome from './components/marketplace/MarketplaceHome';
 import NFTDetail from './components/marketplace/NFTDetail';
 import CollectionDetail from './components/marketplace/CollectionDetail';
 import MyNFTs from './components/studio/MyNFT'
+import PartnerPage from './components/home/PartnerPage';
 
 const App = () => {
   useEffect(() => {
@@ -38,6 +39,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/about" element={<PartnerPage />} />
         <Route path="/staking" element={<Dashboard />} />
         <Route path="/profit" element={<Profit />} />
         <Route path="/studio" element={<StudioHome />} />
@@ -46,7 +48,7 @@ const App = () => {
         <Route path="/studio/collections" element={<StudioCollections />} />
         <Route path="/studio/storefront" element={<StudioStorefront />} />
         <Route path="/marketplace" element={<MarketplaceHome />} />
-        <Route path="/marketplace/nft/:id" element={<NFTDetail />} />
+        <Route path="/marketplace/nft/:tokenId/:serialNumber" element={<NFTDetail />} />
         <Route path="/marketplace/collection/:id" element={<CollectionDetail />} />
       </Routes>
     </BrowserRouter>
